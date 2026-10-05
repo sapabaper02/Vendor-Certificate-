@@ -1,0 +1,7 @@
+@EndUserText.label: 'Vendor Certificates Service Definition'
+define service ZSD_Vendor_Certification {
+  expose ZC_VendorCert       as VendorCert;
+  expose ZC_VendorCertEmail  as EmailLog;
+  expose ZC_VENDORATTACHMENT as Attachment;
+  expose ZI_CertTypeVH       as CertificateTypeVH;
+}

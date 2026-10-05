@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_MANAGECERTIFICATETYPE'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_MANAGECERTIFICATETYPE'
+  }
+}
+define service ZUI_MANAGECERTIFICATETYPE_O4 provider contracts odata_v4_ui {
+  expose ZC_MANAGECERTIFICATETYPE as ManageCertificateType;
+}

@@ -1,0 +1,195 @@
+@Metadata.layer: #CORE
+@UI.headerInfo.title.type: #STANDARD
+@UI.headerInfo.title.value: 'CertificateType'
+@UI.headerInfo.description.type: #STANDARD
+@UI.headerInfo.description.value: 'CertificateType'
+annotate view ZC_MANAGECERTIFICATETYPE with
+{
+  @EndUserText.label: 'UUID'
+  @UI.identification: [ {
+    position: 10 , 
+    label: 'UUID'
+  } ]
+//  @UI.lineItem: [ {
+//    position: 10 , 
+//    label: 'UUID'
+//  } ]
+//  @UI.selectionField: [ {
+//    position: 10 
+//  } ]
+  UUID;
+  
+  @EndUserText.label: 'Certificate Type'
+  @UI.facet: [ {
+    label: 'General Information', 
+    id: 'GeneralInfo', 
+    purpose: #STANDARD, 
+    position: 20 , 
+    type: #IDENTIFICATION_REFERENCE
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'Certificate Type'
+  } ]
+  @UI.lineItem: [ {
+    position: 20 , 
+    label: 'Certificate Type'
+  } ]
+  @UI.selectionField: [ {
+    position: 20 
+  } ]
+  CertificateType;
+  
+  @EndUserText.label: 'Certificate Type Description'
+  @UI.identification: [ {
+    position: 30 , 
+    label: 'Certificate Type Description'
+  } ]
+  @UI.lineItem: [ {
+    position: 30 , 
+    label: 'Certificate Type Description'
+  } ]
+  @UI.selectionField: [ {
+    position: 30 
+  } ]
+  CertTypeDes;
+  
+  @EndUserText.label: 'Tolerance Days'
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'Tolerance Days'
+  } ]
+  @UI.lineItem: [ {
+    position: 40 , 
+    label: 'Tolerance Days'
+  } ]
+  @UI.selectionField: [ {
+    position: 40 
+  } ]
+  Tolerance;
+  
+  @EndUserText.label: 'Alert1'
+  @UI.identification: [ {
+    position: 50 , 
+    label: 'Alert1'
+  } ]
+  @UI.lineItem: [ {
+    position: 50 , 
+    label: 'Alert1'
+  } ]
+//  @UI.selectionField: [ {
+//    position: 50 
+//  } ]
+  Alert1;
+  
+  @EndUserText.label: 'Alert2'
+  @UI.identification: [ {
+    position: 60 , 
+    label: 'Alert2'
+  } ]
+  @UI.lineItem: [ {
+    position: 60 , 
+    label: 'Alert2'
+  } ]
+//  @UI.selectionField: [ {
+//    position: 60 
+//  } ]
+  Alert2;
+  
+  @EndUserText.label: 'Alert3'
+  @UI.identification: [ {
+    position: 70 , 
+    label: 'Alert3'
+  } ]
+  @UI.lineItem: [ {
+    position: 70 , 
+    label: 'Alert3'
+  } ]
+//  @UI.selectionField: [ {
+//    position: 70 
+//  } ]
+  Alert3;
+  
+  @EndUserText.label: 'Note'
+  @UI.identification: [ {
+    position: 80 , 
+    label: 'Note'
+  } ]
+  @UI.lineItem: [ {
+    position: 80 , 
+    label: 'Note'
+  } ]
+//  @UI.selectionField: [ {
+//    position: 80 
+//  } ]
+  Note;
+  
+  @UI.identification: [ {
+    position: 90 
+  } ]
+  @UI.lineItem: [ {
+    position: 90 
+  } ]
+  @UI.selectionField: [ {
+    position: 90 
+  } ]
+  LocalCreatedBy;
+  
+  @UI.identification: [ {
+    position: 100 
+  } ]
+  @UI.lineItem: [ {
+    position: 100 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 100 
+//  } ]
+  LocalCreatedAt;
+  
+  @UI.identification: [ {
+    position: 110 
+  } ]
+  @UI.lineItem: [ {
+    position: 110 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 110 
+//  } ]
+  LocalLastChangedBy;
+  
+  @UI.identification: [ {
+    position: 120 
+  } ]
+  @UI.lineItem: [ {
+    position: 120 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 120 
+//  } ]
+  LocalLastChangedAt;
+  
+  @UI.identification: [ {
+    position: 130 
+  } ]
+  @UI.lineItem: [ {
+    position: 130 
+  } ]
+//  @UI.selectionField: [ {
+//    position: 130 
+//  } ]
+  LastChangedAt;
+  
+  @EndUserText.label: '_BaseEntity'
+  @UI.identification: [ {
+    position: 140 , 
+    label: '_BaseEntity'
+  } ]
+  @UI.lineItem: [ {
+    position: 140 , 
+    label: '_BaseEntity'
+  } ]
+//  @UI.selectionField: [ {
+//    position: 140 
+//  } ]
+  _BaseEntity;
+}

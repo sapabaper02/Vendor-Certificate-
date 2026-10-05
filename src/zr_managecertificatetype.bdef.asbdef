@@ -1,0 +1,58 @@
+managed implementation in class ZBP_R_MANAGECERTIFICATETYPE unique;
+strict ( 2 );
+with draft;
+extensible;
+define behavior for ZR_MANAGECERTIFICATETYPE alias ManageCertificateType
+persistent table ZMNGCRTFCATETYPE
+extensible
+draft table ZMNGCRTFCTTYPE_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+{
+  field ( readonly )
+   UUID,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( numbering : managed )
+   UUID;
+
+  field ( mandatory : create ) CertificateType;
+
+
+  create;
+  update;
+  delete;
+
+    validation val_certyp on save  { field CertificateType; }
+    validation validate_alert_fields on save { create; update; }
+
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZMNGCRTFCATETYPE corresponding extensible
+  {
+    UUID = UUID;
+    CertificateType = CERTIFICATE_TYPE;
+    CertTypeDes = CERT_TYPE_DES;
+    Tolerance = TOLERANCE;
+    Alert1 = ALERT1;
+    Alert2 = ALERT2;
+    Alert3 = ALERT3;
+    Note = NOTE;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+
+}

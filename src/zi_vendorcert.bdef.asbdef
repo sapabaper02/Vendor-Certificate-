@@ -1,0 +1,113 @@
+unmanaged implementation in class zbp_i_vendor_cert unique;
+strict ( 1 );
+with draft;
+
+define behavior for ZI_VendorCert alias VendorCert
+draft table zvendor_cert_d
+lock master
+total etag LastChangedAt
+authorization master ( global )
+etag master LocalLastChangedAt
+{
+  //  /* Standard CRUD Operations - now manually implemented */
+
+  field ( numbering : managed ) CertUuid;  //" <-- generate a unique UUID automatically for every draft record!
+
+  create;
+  update;
+  delete;
+
+  // validation rule and its trigger criteria
+  validation validateCertNo on save { create; field CertNo; }
+  validation validateVendor on save { create; field Vendor; }
+  validation validateCertType on save { create; field CertType; }
+
+
+  association _Attachment { create; with draft; }
+
+  //-- Draft Actions
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare
+
+  {
+    validation validateCertNo;
+    validation validateVendor;
+    validation validateCertType;
+  }
+
+  /* Custom Action */
+  //  action sendEmail result [1] $self;
+
+  /* Field Control */
+  field ( readonly ) CertUuid, CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedAt;
+  field ( mandatory ) Vendor, CertType, CertNo;
+  field ( features : instance ) CertType, Vendor, CertNo;
+
+  //  field ( mandatory : create, readonly : update )Vendor, CertType, CertNo;
+
+  /* Associations */
+  //  association _EmailLogs { create; }
+  //  association _Attachments { create; }
+
+  /* Mapping */
+  mapping for zvendor_cert corresponding
+    {
+      CertUuid           = cert_uuid;
+      Vendor             = vendor;
+      CompanyCode        = company_code;
+      PurchOrg           = purch_org;
+      CertType           = cert_type;
+      CertNo             = cert_no;
+      CertName           = cert_name;
+      ValidFrom          = valid_from;
+      ValidTo            = valid_to;
+      RegCountry         = reg_country;
+      Exempt             = exempt;
+      ExemptReason       = exempt_reason;
+      IntOwnerEmail      = int_owner_email;
+      SupplierEmail      = supplier_email;
+      Alert1             = alert1;
+      Alert2             = alert2;
+      Alert3             = alert3;
+      ToleranceDays      = tolerance_days;
+      status             = status;
+      CreatedBy          = created_by;
+      CreatedAt          = created_at;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}
+
+
+define behavior for ZI_VendorAttachment alias Attachment
+draft table zvendor_attach_d
+//persistent table zvend_attachment
+lock dependent by _VendorCert
+authorization dependent by _VendorCert
+//early numbering
+{
+  field ( numbering : managed ) AttachmentId;
+  create;
+  update;
+  delete ( features : instance );
+  field ( readonly ) CertUuid, AttachmentId, CreatedBy, CreatedAt;
+  field ( mandatory ) Filename, Mimetype;
+  association _VendorCert { with draft; }
+  //  static action Upload result[1]$self;
+
+  mapping for zvend_attachment corresponding
+    {
+      CertUuid     = cert_uuid;
+      AttachmentId = attachment_id;
+      Attachment   = attachment;
+      Filename     = filename;
+      Mimetype     = mimetype;
+      CreatedAt    = created_at;
+      CreatedBy    = created_by;
+    }
+}

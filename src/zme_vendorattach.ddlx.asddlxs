@@ -1,0 +1,59 @@
+@Metadata.layer: #CUSTOMER
+@UI:
+{
+  headerInfo: {
+    typeName: 'Attachment',
+    typeNamePlural: 'Attachments',
+    title: { type: #STANDARD, value: 'Filename' },
+  description: { type: #STANDARD, value: 'Mimetype' }
+  }
+}
+
+annotate entity ZC_VENDORATTACHMENT with
+{
+
+  //  @UI.facet: [      {
+  //                        id: 'Upload',
+  //                        purpose: #STANDARD,
+  //                        type: #FIELDGROUP_REFERENCE,
+  //                        parentId: 'GeneralInfo',
+  //                        label: 'Upload attachemnt',
+  //                        position: 20,
+  //                        targetQualifier: 'Upload'
+  //                    } ]
+
+  @UI.facet: [
+     {
+       id: 'AttGen',
+       purpose: #STANDARD,
+       type: #IDENTIFICATION_REFERENCE,
+       label: 'General',
+       position: 10
+     }
+   ]
+  //  @UI:
+  //    { fieldGroup:     [ { position: 50, qualifier: 'Upload' , label: 'Attachment'} ]}
+  @UI.identification: [ {  position: 5, importance: #HIGH, label: 'Attachment' } ]
+  @UI.lineItem: [ {  position: 5, importance: #HIGH, label: 'Attachment' } ]
+  Attachment;
+  
+  @UI.hidden: true
+  AttachmentId;
+  
+  @UI.hidden: true
+  Filename;
+  
+  @UI.hidden: true
+  Mimetype;
+  
+  @UI.lineItem: [ {  position: 70, importance: #HIGH, label: 'Created By' } ]
+  @UI.identification: [ {  position: 70, importance: #HIGH, label: 'Created By' } ]
+  @EndUserText.label: 'Created By'
+  CreatedBy;
+
+  @UI.lineItem: [ {  position: 80, importance: #HIGH } ]
+  @UI.identification: [ {  position: 80, importance: #HIGH, label: 'Created on' } ]
+  @EndUserText.label: 'Created on'
+
+  CreatedAt;
+}

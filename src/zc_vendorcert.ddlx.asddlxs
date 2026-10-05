@@ -1,0 +1,181 @@
+@Metadata.layer: #CUSTOMER
+@UI.createHidden: false
+/* Ensure mandatory fields trigger the dialog */
+/* Vendor, CertType, CertNo are already marked mandatory in Behavior Definition */
+
+ // ============================================================
+  // Header Information - ENTITY LEVEL
+  // ============================================================
+@UI.headerInfo: {
+  typeName: 'Vendor Certificate',
+  typeNamePlural: 'Manage Vendor Certificates',
+  title: {
+    type: #STANDARD,
+    value: 'CertType'
+  },
+  description: {
+    type: #STANDARD,
+    value: 'Vendor'
+  }
+}
+annotate view ZC_VendorCert with
+{
+
+  // ============================================================
+  // Facets - ENTITY LEVEL
+  // ============================================================
+  @UI.facet: [
+
+    {
+      id: 'GeneralInfo',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'General Information',
+      targetQualifier: 'GeneralInfo',
+      position: 10
+    },
+    {
+      id: 'AlertInfo',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Alert Configuration',
+      targetQualifier: 'AlertInfo',
+      position: 20
+    },
+    {
+      id: 'EmailLogs',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Email Logs',
+      targetElement: '_EmailLogs',
+      position: 30
+    },
+
+       {
+      id: 'Attachment',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Attachment',
+      targetElement: '_Attachment',
+//      targetQualifier: 'Attachment',
+      position: 40
+    }
+
+  ]
+
+  // ============================================================
+  // Field Annotations
+  // ============================================================
+
+  -- List Report Table Columns *`[3]`*
+
+
+  @EndUserText.label: 'Certificate Types'
+  @UI.lineItem: [{ position: 20, label: 'Certificate Types' }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 10, label: 'Certificate Types' }]
+  CertType;
+
+  @UI.lineItem: [{ position: 30, label: 'Vendor' }]
+  @UI.selectionField: [{ position: 30 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 20, label: 'Vendor' }]
+  Vendor;
+
+  @UI.lineItem: [{ position: 40, label: 'Certificate No' }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 30, label: 'Certificate No' }]
+  CertNo;
+
+
+  @UI.lineItem: [{ position: 50, label: 'Certificate Name' }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 40, label: 'Certificate Name' }]
+  CertName;
+
+  @UI.lineItem: [{ position: 60, label: 'Valid From' }]
+  @UI.selectionField: [{ position: 60 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 50, label: 'Valid From' }]
+  ValidFrom;
+
+  @UI.lineItem: [{ position: 70, label: 'Valid To' }]
+  @UI.selectionField: [{ position: 70 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 60, label: 'Valid To' }]
+  ValidTo;
+
+  @EndUserText.label: 'Exempt'
+  @UI.lineItem: [{ position: 80, label: 'Exempt' }]
+  @UI.selectionField: [{ position: 80 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 70, label: 'Exempt' }]
+  //  @Consumption.valueHelpDefinition: [{
+  //    entity: {
+  //      name: 'I_FixedValueHelp',
+  //      element: 'Low'
+  //    },
+  //    useAsValueHelp: true
+  //  }]
+  Exempt;
+
+
+  @UI.selectionField: [{ position: 90 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 80, label: 'Company Code' }]
+  CompanyCode;
+
+  @EndUserText.label: 'Registration Country'
+  @UI.selectionField: [{ position: 100 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 90, label: 'Registration Country' }]
+  RegCountry;
+
+  @UI.selectionField: [{ position: 110 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 100, label: 'Internal Owner Email ID' }]
+  IntOwnerEmail;
+
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 110, label: 'Supplier Email ID' }]
+  SupplierEmail;
+
+  @UI.selectionField: [{ position: 130 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 120, label: 'Exempt Reason' }]
+  ExemptReason;
+
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 130, label: 'Purchasing Organization' }]
+  PurchOrg;
+
+  @UI.fieldGroup: [{ qualifier: 'AlertInfo', position: 10, label: 'Alert 1' }]
+  Alert1;
+
+  @UI.fieldGroup: [{ qualifier: 'AlertInfo', position: 20, label: 'Alert 2' }]
+  Alert2;
+
+  @UI.fieldGroup: [{ qualifier: 'AlertInfo', position: 30, label: 'Alert 3' }]
+  Alert3;
+
+  @UI.fieldGroup: [{ qualifier: 'AlertInfo', position: 40, label: 'Tolerance Days' }]
+  ToleranceDays;
+
+  @UI.lineItem: [
+    { position: 10, label: 'Status' },
+    { type: #FOR_ACTION, dataAction: 'sendEmail', label: 'SendEmail', position: 5 }
+  //    { type: #FOR_ACTION, dataAction: 'createWithoutDraft', label: 'Create' }
+  ]
+  @UI.selectionField: [{ position: 140 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 10, label: 'Status' }]
+  Status;
+
+
+//  @UI:
+//     { fieldGroup:     [ { position: 50, label: 'Attachment'} ]}
+//
+//  attachment;
+//  @UI.hidden: true
+//  filename;
+//  @UI.hidden: true
+//  mimetype;
+//  @UI.lineItem: [ {  position: 50, importance: #HIGH } ]
+//  @UI.fieldGroup: [{ qualifier: 'Attachment', position: 30, label: 'Certificate No' }]
+//  @EndUserText.label: 'Created By'
+//  CreatedBy;
+//  @UI.lineItem: [ {  position: 60, importance: #HIGH } ]
+//  @UI:{ fieldGroup: [{qualifier: 'Attachment', position: 60, importance: #HIGH }] }
+//  @EndUserText.label: 'Created on'
+//
+//  CreatedAt;
+
+
+}

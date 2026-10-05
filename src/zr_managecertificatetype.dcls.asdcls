@@ -1,0 +1,6 @@
+@EndUserText.label: 'ZR_MANAGECERTIFICATETYPE'
+@MappingRole: true
+define role ZR_MANAGECERTIFICATETYPE {
+  grant select on ZR_MANAGECERTIFICATETYPE
+  where TRUE;
+}

@@ -1,0 +1,16 @@
+@Metadata.layer: #CUSTOMER
+//@Metadata.allowExtensions: true
+annotate view ZC_VendorCertEmail with
+{
+  @UI.lineItem: [{ position: 10, label: 'Vendor' }]
+  Vendor;
+
+  @UI.lineItem: [{ position: 20, label: 'Certificate Types' }]
+  CertType;
+
+  @UI.lineItem: [{ position: 30, label: 'Certificate No' }]
+  CertNo;
+
+  @UI.lineItem: [{ position: 40, label: 'Last Sent' }]
+  LastSent;
+}
